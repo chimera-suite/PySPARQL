@@ -2,7 +2,7 @@
 
 from pyspark.context import SparkConf, SparkContext
 from pyspark.sql.session import SparkSession
-from SPARQL2Spark import SPARQL2SparkWrapper
+from SPARQL2Spark.Wrapper import SPARQL2SparkWrapper
 
 class BaseTest(object):
     wrapper = None

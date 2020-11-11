@@ -1,1 +1,0 @@
-from .SPARQL2SparkWrapper import SPARQL2SparkWrapper

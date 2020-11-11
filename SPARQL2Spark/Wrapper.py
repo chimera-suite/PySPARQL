@@ -2,8 +2,8 @@ from SPARQLWrapper import SPARQLWrapper
 from SPARQLWrapper.Wrapper import JSONLD, CSV
 from SPARQLWrapper.Wrapper import SELECT, CONSTRUCT
 
-from .SPARQL2SparkSelectResult import SPARQL2SparkSelectResult
-from .SPARQL2SparkConstructResult import SPARQL2SparkConstructResult
+from .SelectResult import SPARQL2SparkSelectResult
+from .ConstructResult import SPARQL2SparkConstructResult
 
 class SPARQL2SparkWrapper:
     
