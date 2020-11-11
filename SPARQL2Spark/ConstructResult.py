@@ -4,7 +4,7 @@ from rdflib.term import Variable
 from pyspark.sql.functions import udf, col, first
 
 @udf
-def escape_udf(s):
+def _escape_udf(s):
     return s.replace(".", "_")
 
 class SPARQL2SparkConstructResult:
@@ -64,7 +64,7 @@ class SPARQL2SparkConstructResult:
     def verticesDataFrame(self):
         vertices_sparql_result = self.sparql_result.query(self.__VERTICES_QUERY)
         return self.__to_dataframe(vertices_sparql_result) \
-            .withColumn("predicate", escape_udf(col("predicate"))) \
+            .withColumn("predicate", _escape_udf(col("predicate"))) \
             .groupby("subject") \
             .pivot("predicate") \
             .agg(first("object")) \
