@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+    jena-fuseki:
+        hostname: jena-fuseki
+        container_name: jena-fuseki
+        build: ./jena-fuseki
+        ports:
+            - 3030:3030
+        environment: 
+            - ADMIN_PASSWORD=admin
+
+networks:
+    default:
+        name: test_network
