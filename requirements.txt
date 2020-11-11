@@ -1,0 +1,9 @@
+SPARQLWrapper==1.8.5
+pyspark==2.4.5
+rdflib-jsonld==0.5.0
+rdflib==5.0.0
+graphframes==0.6
+pytest==6.1.2
+setuptools==50.3.2
+wheel==0.35.1
+requests==2.24.0
