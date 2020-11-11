@@ -8,7 +8,12 @@ def _escape_udf(s):
     return s.replace(".", "_")
 
 class SPARQL2SparkConstructResult:
-    
+    """This is a class representation of the result of a `construct` query.
+    In particular, it has properties that return the results as a 
+    :class:`pyspark.sql.DataFrame` or as a :class:`graphframes.GraphFrame`, 
+    depending on user needs.
+    """
+
     __SCHEMA = StructType([
         StructField("subject", StringType()),
         StructField("predicate", StringType()),
@@ -57,11 +62,22 @@ class SPARQL2SparkConstructResult:
         
     @property
     def dataFrame(self):
+        """A DataFrame of triples representing the constructed graph. 
+
+        :type: :class:`pyspark.sql.DataFrame`
+        """
+
         sparql_result = self.sparql_result.query(self.__QUERY)
         return self.__to_dataframe(sparql_result)
     
     @property
     def verticesDataFrame(self):
+        """A DataFrame representing the vertices and literals of the 
+        constructed graph.
+
+        :type: :class:`pyspark.sql.DataFrame`
+        """
+
         vertices_sparql_result = self.sparql_result.query(self.__VERTICES_QUERY)
         return self.__to_dataframe(vertices_sparql_result) \
             .withColumn("predicate", _escape_udf(col("predicate"))) \
@@ -72,6 +88,12 @@ class SPARQL2SparkConstructResult:
 
     @property
     def edgesDataFrame(self):
+        """A DataFrame of triples representing the egdes of the 
+        constructed graph.
+
+        :type: :class:`pyspark.sql.DataFrame`
+        """
+
         edges_sparql_result = self.sparql_result.query(self.__EDGES_QUERY)
         return self.__to_dataframe(edges_sparql_result) \
             .withColumnRenamed("subject", "src") \
@@ -80,6 +102,11 @@ class SPARQL2SparkConstructResult:
     
     @property
     def graphFrame(self):
+        """A GraphFrame representation of the constructed graph.
+
+        :type: :class:`graphframes.GraphFrame`
+        """
+
         return GraphFrame(
             self.verticesDataFrame, 
             self.edgesDataFrame
