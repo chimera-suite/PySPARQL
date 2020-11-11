@@ -18,18 +18,17 @@ RUN apt-get -qq update \
         && apt-get clean
 
 # 3. PYTHON+PIP
+# Add deadsnakes repository
+RUN apt-get -qq update \
+        && apt-get install -y software-properties-common \
+        && add-apt-repository ppa:deadsnakes/ppa
 # Install python
 RUN apt-get -qq update \
-        && apt-get install -y python3 \
-        && apt-get clean
-# Link python3 to python
-RUN ln -s /usr/bin/python3 /usr/bin/python
-# Download get-pip.py file to '/tmp' directory
-RUN wget --directory-prefix /tmp https://bootstrap.pypa.io/get-pip.py
-# Install pip
-RUN python /tmp/get-pip.py
-# Remove '/tmp/get-pip.py' file
-RUN rm /tmp/get-pip.py
+        && apt-get install -y python3.6 python3.6-dev python3-pip
+# Link python3 to python and pip3 to pip
+RUN ln -sfn /usr/bin/python3.6 /usr/bin/python3 \
+        && ln -sfn /usr/bin/python3 /usr/bin/python \
+        && ln -sfn /usr/bin/pip3 /usr/bin/pip
 
 # 4. SPARK
 # Install Apache Spark using pip
