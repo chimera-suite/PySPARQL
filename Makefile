@@ -33,7 +33,6 @@ docker-build:
 # This function uses pytest to test our source files
 docker-test: docker-build
 	docker run \
-		-it \
 		-v ${PWD}/SPARQL2Spark:/code/SPARQL2Spark \
 		-v ${PWD}/tests:/code/tests \
 		-v ${PWD}/Makefile:/code/Makefile \
