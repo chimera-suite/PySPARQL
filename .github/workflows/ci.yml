@@ -15,24 +15,17 @@ jobs:
       - name: Install make and wget
         run: sudo apt-get install make wget
         
-      - name: Set up Java 8 JDK
-        uses: actions/setup-java@v1
-        with:
-          java-version: '8.0.232'
-
       - name: Set up Python 3.6
         uses: actions/setup-python@v1
         with:
           python-version: 3.6
           
-      - name: Install GraphFrame jar
-        run: wget --directory-prefix /jars http://dl.bintray.com/spark-packages/maven/graphframes/graphframes/0.7.0-spark2.4-s_2.11/graphframes-0.7.0-spark2.4-s_2.11.jar
-
-      - name: Setup environment
-        run: pip install -r requirements.txt
-
-      - name: Test 
-        run: make test
-      
-      - name: Build
-        run: make build
+      - name: Install docker
+        uses: docker-practice/actions-setup-docker@master
+        with:
+          docker_channel: stable
+          docker_version: 19.03
+          
+      - name: Build and test 
+        run: make docker-test
+        
