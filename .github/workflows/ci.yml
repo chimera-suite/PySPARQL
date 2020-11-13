@@ -1,12 +1,9 @@
 name: Publish Python distributions to PyPI
 
-on:
-  push:
-    tags:
-    - '*'
+on: push
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-18.04
 
     steps:
@@ -41,8 +38,8 @@ jobs:
         run: make docker-test
 
       - name: Publish a Python distribution to PyPI
+        if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
         uses: pypa/gh-action-pypi-publish@master
         with:
           user: __token__
           password: ${{ secrets.pypi_password }}
-        
