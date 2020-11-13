@@ -32,7 +32,6 @@ jobs:
         run: | 
           cd deployment
           docker-compose up -d
-          sleep 2m
           
       - name: Build and test 
         run: make docker-test
