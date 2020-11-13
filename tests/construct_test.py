@@ -79,8 +79,8 @@ class TestConstruct(BaseTest):
         )
         
         # WHEN
-        graphFrame = self.wrapper.query(construct_query)
+        result = self.wrapper.query(construct_query)
 
         # THEN
-        self._assert_dataframe_equal(graphFrame.edges, edgesDF)
-        self._assert_dataframe_equal(graphFrame.vertices, verticesDF )
+        self._assert_dataframe_equal(result.graphFrame.edges, edgesDF)
+        self._assert_dataframe_equal(result.graphFrame.vertices, verticesDF )

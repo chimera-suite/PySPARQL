@@ -57,7 +57,7 @@ class SPARQL2SparkWrapper:
         self.__SPARQLWrapper.setReturnFormat(CSV)
         self.__SPARQLWrapper.setQuery(query)
         sparql_result = self.__SPARQLWrapper.query().convert()
-        return SPARQL2SparkSelectResult(self.__spark, sparql_result).dataFrame
+        return SPARQL2SparkSelectResult(self.__spark, sparql_result)
         
     def construct(self, query):
         """Executes the `construct` query against the SPARQL endpoind.
@@ -71,5 +71,5 @@ class SPARQL2SparkWrapper:
         self.__SPARQLWrapper.setReturnFormat(JSONLD)
         self.__SPARQLWrapper.setQuery(query)
         sparql_result = self.__SPARQLWrapper.query().convert()
-        return SPARQL2SparkConstructResult(self.__spark, sparql_result).graphFrame
+        return SPARQL2SparkConstructResult(self.__spark, sparql_result)
 

@@ -48,9 +48,9 @@ class TestSelect(BaseTest):
         )
 
         # WHEN
-        dataFrame = self.wrapper.query(select_query)
+        result = self.wrapper.query(select_query)
 
         # THEN
-        self._assert_dataframe_equal(dataFrame, selectDF)
+        self._assert_dataframe_equal(result.dataFrame, selectDF)
 
         
