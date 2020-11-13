@@ -32,6 +32,8 @@ docker-build:
 	docker build -t python-test .
 # This function uses pytest to test our source files
 docker-test: docker-build
+	chmod +x ./wait-for.sh
+	./wait-for.sh localhost:3030 --timeout=120 -- \
 	docker run \
 		-v ${PWD}/SPARQL2Spark:/code/SPARQL2Spark \
 		-v ${PWD}/tests:/code/tests \
