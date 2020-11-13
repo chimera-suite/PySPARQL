@@ -23,7 +23,7 @@ setup: build
 	@echo "Installing dependencies"
 	pip install -r requirements.txt
 	@echo "Installing SPARQL2Spark"
-	pip install dist/SPARQL2Spark-0.0.1-py3-none-any.whl
+	pip install dist/SPARQL2Spark-0.0.2-py3-none-any.whl
 
 test: setup
 	pytest
