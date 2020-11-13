@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(name='SPARQL2Spark',
-      version='0.0.2',
+      version='0.0.3',
       description='SPARQL Result to Spark',
       author='Emanuele Falzone',
       author_email='emanuele.falzone@polimi.it',
