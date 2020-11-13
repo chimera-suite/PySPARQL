@@ -38,7 +38,7 @@ docker-test: docker-build
 		-v ${PWD}/Makefile:/code/Makefile \
 		-v ${PWD}/requirements.txt:/code/requirements.txt \
 		-v ${PWD}/setup.py:/code/setup.py \
-		-v ${PWD}/README.md:/code/README.md \
+		-v ${PWD}/README.rst:/code/README.rst \
 		-v ${PWD}/dist:/code/dist \
 		--network="test_network" \
 		-w="/code" \
