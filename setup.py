@@ -12,7 +12,6 @@ setup(name='SPARQL2Spark',
       long_description_content_type="text/markdown",
       install_requires=['rdflib','rdflib-jsonld','sparqlwrapper','graphframes','pyspark'],
       packages=['SPARQL2Spark'],
-      long_description=long_description,
       classifiers=[
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License",
