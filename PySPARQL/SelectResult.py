@@ -2,7 +2,7 @@ from pyspark.sql.types import StructType, StructField, StringType
 from csv import DictReader
 from io import StringIO
 
-class SPARQL2SparkSelectResult:
+class PySPARQLSelectResult:
     """This is a class representation of the result of a `select` query.
     In particular, it has property that return the results as a DataFrame.
     """

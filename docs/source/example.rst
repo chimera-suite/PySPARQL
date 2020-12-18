@@ -9,7 +9,7 @@ This is a simple select example::
 
     from pyspark.context import SparkContext
     from pyspark.sql.session import SparkSession
-    from SPARQL2Spark.Wrapper import SPARQL2SparkWrapper
+    from PySPARQL.Wrapper import PySPARQLWrapper
 
     sparql_endpoint = "http://jena-fuseki:3030/ds/sparql"
 
@@ -29,7 +29,7 @@ This is a simple select example::
 
     sparkContext = SparkContext.getOrCreate()
     spark = SparkSession(sparkContext)
-    wrapper = SPARQL2SparkWrapper(spark, sparql_endpoint)
+    wrapper = PySPARQLWrapper(spark, sparql_endpoint)
     result = wrapper.query(query)
     resultDF = result.dataFrame
 

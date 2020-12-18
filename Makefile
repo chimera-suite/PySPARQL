@@ -33,7 +33,7 @@ docker-test: docker-build
 	chmod +x ./wait-for.sh
 	./wait-for.sh localhost:3030 --timeout=120 -- \
 	docker run \
-		-v ${PWD}/SPARQL2Spark:/code/SPARQL2Spark \
+		-v ${PWD}/PySPARQL:/code/PySPARQL \
 		-v ${PWD}/tests:/code/tests \
 		-v ${PWD}/Makefile:/code/Makefile \
 		-v ${PWD}/requirements.txt:/code/requirements.txt \

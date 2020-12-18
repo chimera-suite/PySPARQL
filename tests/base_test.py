@@ -2,7 +2,7 @@
 
 from pyspark.context import SparkConf, SparkContext
 from pyspark.sql.session import SparkSession
-from SPARQL2Spark.Wrapper import SPARQL2SparkWrapper
+from PySPARQL.Wrapper import PySPARQLWrapper
 
 class BaseTest(object):
     wrapper = None
@@ -12,7 +12,7 @@ class BaseTest(object):
         sparkConf = SparkConf().set("spark.jars", "/jars/graphframes-0.7.0-spark2.4-s_2.11.jar")
         sparkContext = SparkContext(conf=sparkConf)
         spark = SparkSession(sparkContext)
-        wrapper = SPARQL2SparkWrapper(spark, self.sparql_endpoint)
+        wrapper = PySPARQLWrapper(spark, self.sparql_endpoint)
         self.spark = spark
         self.wrapper = wrapper
 

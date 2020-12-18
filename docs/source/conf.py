@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'SPARQL2Spark'
+project = 'PySPARQL'
 copyright = '2020, Emanuele Falzone'
 author = 'Emanuele Falzone'
 

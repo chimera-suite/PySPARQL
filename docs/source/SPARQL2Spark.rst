@@ -1,10 +1,10 @@
-SPARQL2Spark package
+PySPARQL package
 ====================
 
 ConstructResult
 -----------------------------------
 
-.. automodule:: SPARQL2Spark.ConstructResult
+.. automodule:: PySPARQL.ConstructResult
    :members:
    :undoc-members:
    :show-inheritance:
@@ -12,7 +12,7 @@ ConstructResult
 SelectResult
 --------------------------------
 
-.. automodule:: SPARQL2Spark.SelectResult
+.. automodule:: PySPARQL.SelectResult
    :members:
    :undoc-members:
    :show-inheritance:
@@ -20,7 +20,7 @@ SelectResult
 Wrapper
 ---------------------------
 
-.. automodule:: SPARQL2Spark.Wrapper
+.. automodule:: PySPARQL.Wrapper
    :members:
    :undoc-members:
    :show-inheritance:

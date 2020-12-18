@@ -7,7 +7,7 @@ from pyspark.sql.functions import udf, col, first
 def _escape_udf(s):
     return s.replace(".", "_")
 
-class SPARQL2SparkConstructResult:
+class PySPARQLConstructResult:
     """This is a class representation of the result of a `construct` query.
     In particular, it has properties that return the results as a 
     :class:`pyspark.sql.DataFrame` or as a :class:`graphframes.GraphFrame`, 
