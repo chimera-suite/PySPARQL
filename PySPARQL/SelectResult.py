@@ -18,7 +18,7 @@ class PySPARQLSelectResult:
 
         :type: :class:`pyspark.sql.DataFrame`
         """
-        print(self.sparql_result.decode('utf-8'))
+
         memory_file = StringIO(initial_value=self.sparql_result.decode('utf-8'), newline='\n')
         reader = DictReader(memory_file)
 
