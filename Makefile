@@ -18,8 +18,14 @@ build:
 
 publish:
 	twine upload dist/*
-	
+
 test: 
+	docker-compose \
+		--file deployment/docker-compose.yml up \
+		--detach \
+		--build \
+		--force-recreate
+
 	docker build \
 		--build-arg "APACHE_SPARK_VERSION=${APACHE_SPARK_VERSION}" \
 		--build-arg "HADOOP_VERSION=${HADOOP_VERSION}" \
