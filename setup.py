@@ -4,7 +4,7 @@ with open("README.rst", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(name='PySPARQL',
-      version='0.0.5',
+      version='0.0.6',
       description='Query a SPARQL endpoint and manage the result with Spark',
       author='Emanuele Falzone',
       author_email='emanuele.falzone@polimi.it',
