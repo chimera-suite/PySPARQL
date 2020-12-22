@@ -72,7 +72,7 @@ COPY setup.py setup.py
 COPY README.rst README.rst
 
 RUN pip install -r requirements.txt
-RUN pip install --no-deps .
+RUN pip install .
 
 WORKDIR /code
 
