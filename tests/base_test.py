@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from pyspark.context import SparkConf, SparkContext
 from pyspark.sql.session import SparkSession
 from PySPARQL.Wrapper import PySPARQLWrapper
 
@@ -9,9 +8,7 @@ class BaseTest(object):
     sparql_endpoint = "http://jena-fuseki:3030/ds/sparql"
 
     def setup_method(self):
-        sparkConf = SparkConf().set("spark.jars", "/jars/graphframes-0.7.0-spark2.4-s_2.11.jar")
-        sparkContext = SparkContext(conf=sparkConf)
-        spark = SparkSession(sparkContext)
+        spark = SparkSession.builder.getOrCreate()
         wrapper = PySPARQLWrapper(spark, self.sparql_endpoint)
         self.spark = spark
         self.wrapper = wrapper
