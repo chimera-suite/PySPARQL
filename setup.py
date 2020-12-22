@@ -10,7 +10,7 @@ setup(name='PySPARQL',
       author_email='emanuele.falzone@polimi.it',
       long_description=long_description,
       url = "https://github.com/chimera-suite/PySPARQL",
-      install_requires=['rdflib','rdflib-jsonld','sparqlwrapper','graphframes','pyspark'],
+      install_requires=['rdflib','rdflib-jsonld','sparqlwrapper','graphframes'],
       packages=['PySPARQL'],
       classifiers=[
             "Programming Language :: Python :: 3",
