@@ -1,6 +1,6 @@
 # .PHONY defines parts of the makefile that are not dependant on any specific file
 # This is most often used to store functions
-.PHONY = help setup test
+.PHONY = help build test test-all
 
 # Defines the default target that `make` will to try to make, or in the case of a phony target, execute the specified commands
 # This target is executed whenever we just type `make`
@@ -10,36 +10,32 @@
 help:
 	@echo "---------------HELP-----------------"
 	@echo "To build the project type make build"
-	@echo "To setup the project type make setup"
-	@echo "To test the project type make test"
+	@echo "To test the project type make test-all"
 	@echo "------------------------------------"
 
-# Build wheel
 build:
-	python setup.py sdist bdist_wheel
+	python setup.py sdist 
 
-# This installs the dependencies and the module using pip
-setup: build
-	@echo "Installing dependencies"
-	pip install -r requirements.txt
-
-test: setup
-	pytest
-
-docker-build:
-	docker build -t python-test .
-# This function uses pytest to test our source files
-docker-test: docker-build
-	chmod +x ./wait-for.sh
-	./wait-for.sh localhost:3030 --timeout=120 -- \
+publish:
+	twine upload dist/*
+	
+test: 
+	docker build \
+		--build-arg "APACHE_SPARK_VERSION=${APACHE_SPARK_VERSION}" \
+		--build-arg "HADOOP_VERSION=${HADOOP_VERSION}" \
+		--build-arg "GRAPHFRAME_VERSION=${GRAPHFRAME_VERSION}" \
+		--tag "pysparql-test:${APACHE_SPARK_VERSION}-${HADOOP_VERSION}-${GRAPHFRAME_VERSION}" \
+		.
+		
 	docker run \
-		-v ${PWD}/PySPARQL:/code/PySPARQL \
-		-v ${PWD}/tests:/code/tests \
-		-v ${PWD}/Makefile:/code/Makefile \
-		-v ${PWD}/requirements.txt:/code/requirements.txt \
-		-v ${PWD}/setup.py:/code/setup.py \
-		-v ${PWD}/README.rst:/code/README.rst \
-		-v ${PWD}/dist:/code/dist \
 		--network="test_network" \
-		-w="/code" \
-		python-test make test
+		"pysparql-test:${APACHE_SPARK_VERSION}-${HADOOP_VERSION}-${GRAPHFRAME_VERSION}"
+
+test-all:
+	make test APACHE_SPARK_VERSION=2.4.0 HADOOP_VERSION=2.7 GRAPHFRAME_VERSION=0.8.1-spark2.4-s_2.11
+	make test APACHE_SPARK_VERSION=2.4.1 HADOOP_VERSION=2.7 GRAPHFRAME_VERSION=0.8.1-spark2.4-s_2.11
+	make test APACHE_SPARK_VERSION=2.4.3 HADOOP_VERSION=2.7 GRAPHFRAME_VERSION=0.8.1-spark2.4-s_2.11
+	make test APACHE_SPARK_VERSION=2.4.4 HADOOP_VERSION=2.7 GRAPHFRAME_VERSION=0.8.1-spark2.4-s_2.11
+	make test APACHE_SPARK_VERSION=2.4.5 HADOOP_VERSION=2.7 GRAPHFRAME_VERSION=0.8.1-spark2.4-s_2.11
+	make test APACHE_SPARK_VERSION=3.0.0 HADOOP_VERSION=3.2 GRAPHFRAME_VERSION=0.8.1-spark3.0-s_2.12
+	make test APACHE_SPARK_VERSION=3.0.1 HADOOP_VERSION=3.2 GRAPHFRAME_VERSION=0.8.1-spark3.0-s_2.12
